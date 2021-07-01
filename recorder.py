@@ -11,8 +11,8 @@ speaker.say("Recording will start in 10 seconds")
 speaker.runAndWait()
 
 print('starting...')
-print("'q' for stop recording\n's' for open web cam\n'f' for close webcam")
-speaker.say("press, 's' on keyboard to web cam on and press. 'f' to off the cam")
+print("'s' for open web cam\n'f' for close webcam\n'q' for stop recording")
+speaker.say("press, 's' on keyboard to web cam on, and press. 'f' to off the cam")
 speaker.runAndWait()
 
 width = GetSystemMetrics(0)
@@ -36,9 +36,10 @@ while True:
 
     if cv2.waitKey(10) == ord('s'):
         webcam_open = True
-
-    if cv2.waitKey(10) == ord('f'):
+    elif cv2.waitKey(10) == ord('f'):
         webcam_open = False
+    elif cv2.waitKey(10) == ord('q'):
+        break
 
     if webcam_open == True:
         fr_height, fr_width, _ = frame.shape
@@ -48,6 +49,3 @@ while True:
     cv2.imshow("Ninja's Screen Recorder", img_final)
     # cv2.imshow("Ninja's Web Cam", frame)
     captured_video.write(img_final)
-
-    if cv2.waitKey(10) == ord('q'):
-        break

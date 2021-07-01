@@ -10,8 +10,8 @@ speaker = pyttsx3.init()
 speaker.say("Recording will start in 10 seconds")
 speaker.runAndWait()
 
-print('starting...')
-print("'s' for open web cam\n'f' for close webcam\n'q' for stop recording")
+print("\n's' for open web cam\n'f' for close webcam\n'q' for stop recording")
+print('\nstarting...')
 speaker.say("press, 's' on keyboard to web cam on, and press. 'f' to off the cam")
 speaker.runAndWait()
 
@@ -34,12 +34,12 @@ while True:
     img_final = cv2.cvtColor(img_np, cv2.COLOR_BGR2RGB)
     _, frame = webcam.read()
 
-    if cv2.waitKey(10) == ord('s'):
-        webcam_open = True
+    if cv2.waitKey(10) == ord('q'):
+        break
     elif cv2.waitKey(10) == ord('f'):
         webcam_open = False
-    elif cv2.waitKey(10) == ord('q'):
-        break
+    elif cv2.waitKey(10) == ord('s'):
+        webcam_open = True
 
     if webcam_open == True:
         fr_height, fr_width, _ = frame.shape
